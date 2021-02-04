@@ -44,7 +44,7 @@ object SparkSQL {
     
     val results = teenagers.collect()
     
-   /* just to check github */ 
+   /* just to check github2 */ 
     
     results.foreach(println)
     
