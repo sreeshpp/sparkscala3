@@ -49,5 +49,5 @@ object SparkSQL {
     results.foreach(println)
     
     spark.stop()
-  }
+      }
 }
