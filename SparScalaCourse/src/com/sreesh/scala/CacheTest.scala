@@ -45,7 +45,6 @@ object CacheTest {
      var df2=df.select("gender","name","text")
      var df3=df2.crossJoin(df2)
      df3.count()
-     df3.cache()
      df3.count() 
   }
    
