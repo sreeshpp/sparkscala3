@@ -46,7 +46,7 @@ object CacheTest {
      var df3=df2.crossJoin(df2)
      df3.count()
      df3.cache()
-     df3.count()
+     df3.count() 
   }
    
    
