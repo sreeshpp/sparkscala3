@@ -28,32 +28,31 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.ml.Pipeline;
 import org.apache.spark.ml.PipelineModel;
 import org.apache.spark.ml.PipelineStage;
-object CacheTest {
+
+object StreamingStructired {
   
-   def main(args:Array[String])
+  def main(args:Array[String])
   {
-   
-    /* this program convert DF to RDD and RDD to DF */
-     
-    var spark=SparkSession.builder().appName("StopWordRenover").getOrCreate()
-    
-     spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", "AKIAIWRLSOV7K5NLNPNA")
-     spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", "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")
-     spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl","org.apache.hadoop.fs.s3a.S3AFileSystem")
-     spark.sparkContext.getConf.set("spark.storage.memoryfraction","0.9")
-     var df = spark.read.option("header",true).option("inferschema",true).csv("s3a://sreesh-twitter/gender-classifier-DFE-791531.csv")
-     var df2=df.select("gender","name","text").groupBy(col("gender")).count()
-     df2.printSchema()
- /*    var df3=df2.crossJoin(df2)
-     df3.count()
-     df3=df3.cache()
-     df3.count()  */
-     println(df2.count())
-     df2.cache()
-     println(df2.count())
-  }
-   
-   
+  val spark = SparkSession
+  .builder()
+  .master("local")
+  .appName("Rate Source")
+  .getOrCreate()
+  /** rate source **/
+  val initDF = (spark
+  .readStream
+  .format("rate")
+  .option("rowsPerSecond", 1)
+  .load())
+  val resultDF = initDF.withColumn("result", col("value") + lit(1))
+  initDF
+  .writeStream
+  .outputMode("append")
+  .option("truncate", false)
+  .format("console")
+  .start()
+  .awaitTermination()
+
   
-  
+}
 }

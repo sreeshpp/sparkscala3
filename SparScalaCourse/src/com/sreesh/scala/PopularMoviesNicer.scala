@@ -1,4 +1,4 @@
-package com.sundogsoftware.spark
+package com.sreesh.scala
 
 import org.apache.spark._
 import org.apache.spark.SparkContext._
@@ -14,12 +14,12 @@ object PopularMoviesNicer {
   def loadMovieNames() : Map[Int, String] = {
     
     // Handle character encoding issues:
-    implicit val codec = Codec("ISO-8859-1") // This is the current encoding of u.item, not UTF-8.
+   implicit val codec = Codec("ISO-8859-1") // This is the current encoding of u.item, not UTF-8.
 
     // Create a Map of Ints to Strings, and populate it from u.item.
     var movieNames:Map[Int, String] = Map()
     
-     val lines = Source.fromFile("../ml-100k/u.item").getLines()
+     val lines = Source.fromFile("src\\ml-100k\\u.item").getLines()
      for (line <- lines) {
        var fields = line.split('|')
        if (fields.length > 1) {
@@ -43,7 +43,7 @@ object PopularMoviesNicer {
     var nameDict = sc.broadcast(loadMovieNames)
     
     // Read in each rating line
-    val lines = sc.textFile("../ml-100k/u.data")
+    val lines = sc.textFile("src\\ml-100k\\u.data")
     
     // Map to (movieID, 1) tuples
     val movies = lines.map(x => (x.split("\t")(1).toInt, 1))
