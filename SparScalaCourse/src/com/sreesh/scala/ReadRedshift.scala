@@ -10,7 +10,7 @@ import org.apache.spark.sql.SaveMode
 
 object ReadRedshift {
   
-  def main(Arags:Array[String])
+  def main(Arags:Array[String]) 
   {
   /* val spark=SparkSession.builder().appName("json").master("local[*]").getOrCreate() */ 
     val spark=SparkSession.builder().appName("redshift").getOrCreate()  
