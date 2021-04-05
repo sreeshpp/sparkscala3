@@ -12,8 +12,8 @@ object ReadRedshift {
   
   def main(Arags:Array[String])
   {
-  /* val spark=SparkSession.builder().appName("json").master("local[*]").getOrCreate() */
-    val spark=SparkSession.builder().appName("redshift").getOrCreate() 
+  /* val spark=SparkSession.builder().appName("json").master("local[*]").getOrCreate() */ 
+    val spark=SparkSession.builder().appName("redshift").getOrCreate()  
     spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", "AKIAIWRLSOV7K5NLNPNA")
     spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", "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")
     spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl","org.apache.hadoop.fs.s3a.S3AFileSystem")
