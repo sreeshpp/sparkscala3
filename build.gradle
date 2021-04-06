@@ -33,7 +33,7 @@ dependencies {
 
 jar{
     manifest {
-    attributes 'Main-Class': 'com.financial.analysis.spark.SparkFinancialAnalysisMain'
+    attributes 'Main-Class': 'com.sreesh.scala.ReadRedshift'
     }
 }
 
