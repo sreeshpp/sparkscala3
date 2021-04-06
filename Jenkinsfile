@@ -13,7 +13,7 @@ node{
         if(isUnix()){
         echo 'unix os'
         sh 'pwd'
-        chmod +x gradlew
+        sh 'chmod +x gradlew'
         sh './gradlew clean build -xtest --info'
   }
   else{
