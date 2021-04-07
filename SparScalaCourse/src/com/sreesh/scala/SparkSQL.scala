@@ -2,7 +2,7 @@ package com.sreesh.scala
 
 import org.apache.spark._
 import org.apache.spark.SparkContext._
-import org.apache.spark.sql._
+import org.apache.spark.sql._ 
 import org.apache.log4j._
 
 object SparkSQL {
@@ -13,7 +13,7 @@ object SparkSQL {
     val fields = line.split(',')  
     
     val person:Person = Person(fields(0).toInt, fields(1), fields(2).toInt, fields(3).toInt)
-    return person 
+    return person   
   }
   
   /** Our main function where the action happens */
