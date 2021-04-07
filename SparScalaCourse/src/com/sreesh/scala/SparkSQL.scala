@@ -1,4 +1,4 @@
-package com.sundogsoftware.spark
+package com.sreesh.scala
 
 import org.apache.spark._
 import org.apache.spark.SparkContext._
@@ -32,8 +32,10 @@ object SparkSQL {
     val people = lines.map(mapper)
     
     // Infer the schema, and register the DataSet as a table.
+   
     import spark.implicits._
-    val schemaPeople = people.toDS
+
+    val schemaPeople = people.toDF()
     
     schemaPeople.printSchema()
     

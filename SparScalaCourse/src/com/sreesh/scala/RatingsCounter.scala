@@ -18,13 +18,17 @@ object RatingsCounter {
     val sc = new SparkContext("local[*]", "RatingsCounter")
    
     // Load up each line of the ratings data into an RDD
-    val lines = sc.textFile("../ml-100k/u.data")
+ //   val lines = sc.textFile("../ml-100k/u.data")
+     val lines = sc.textFile("src\\ml-100k\\u.data")
     
     // Convert each line to a string, split it out by tabs, and extract the third field.
     // (The file format is userID, movieID, rating, timestamp)
     val ratings = lines.map(x => x.toString().split("\t")(2))
-    
-    // Count up how many times each value (rating) occurs
+    val ratings2=lines.map(x=>(x.toString().split("\t")(2),1))
+    println("rating by reduce by key")
+    ratings2.reduceByKey((a,b)=>(a+b)).sortByKey(true,1).foreach(x=>println(x))
+    println("rating by count value")
+        // Count up how many times each value (rating) occurs
     val results = ratings.countByValue()
     
     // Sort the resulting map of (rating, count) tuples
