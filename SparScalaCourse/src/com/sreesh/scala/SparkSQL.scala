@@ -13,7 +13,7 @@ object SparkSQL {
     val fields = line.split(',')  
     
     val person:Person = Person(fields(0).toInt, fields(1), fields(2).toInt, fields(3).toInt)
-    return person
+    return person 
   }
   
   /** Our main function where the action happens */
