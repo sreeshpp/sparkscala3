@@ -30,15 +30,10 @@ dependencies {
 //    implementation 'org.apache.spark:spark-core_2.12:3.0.0'
 
     // Spark SQL subsumes Spark Core
-    implementation 'org.apache.spark:spark-sql_2.12:3.0.0'
-
-    // Use Scalatest for testing our library
-    testImplementation 'junit:junit:null'
-    testImplementation 'org.scalatest:scalatest_2.13:3.1.2'
-    testImplementation 'org.scalatestplus:junit-4-12_2.13:3.1.2.0'
-
-    // Need scala-xml at test runtime
-    testRuntimeOnly 'org.scala-lang.modules:scala-xml_2.13:1.2.0'
+    compile group: 'org.apache.spark', name: 'spark-core_2.10', version: '2.2.0'
+    compile group: 'org.apache.spark', name: 'spark-streaming_2.10', version: '2.2.0'
+    compile group: 'org.apache.spark', name: 'spark-sql_2.10', version: '2.2.0'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
 application {
